@@ -14,13 +14,28 @@ describe("GetExtendedProducts tests", () => {
 
     const extendedProducts =
       await new GetExtendedProducts().getExtendedProducts(
-        Currency.DanishKrone,
-        Currency.NorwegianKrone
+        Currency.NorwegianKrone,
+        Currency.DanishKrone
       );
 
     expect(getProductsMock.mock.calls.length).toBe(1);
     expect(getPriceMock.mock.calls.length).toBe(3);
     expect(getRatingsMock.mock.calls.length).toBe(3);
+
+    expect(getPriceMock.mock.calls[0][0]).toBe(502);
+    expect(getPriceMock.mock.calls[0][1]).toBe("nok");
+
+    expect(getPriceMock.mock.calls[1][0]).toBe(653);
+    expect(getPriceMock.mock.calls[1][1]).toBe("nok");
+
+    expect(getPriceMock.mock.calls[2][0]).toBe(599);
+    expect(getPriceMock.mock.calls[2][1]).toBe("nok");
+
+
+    expect(getRatingsMock.mock.calls[0][0]).toBe(398177);
+    expect(getRatingsMock.mock.calls[1][0]).toBe(668620);
+    expect(getRatingsMock.mock.calls[2][0]).toBe(1148375);
+
 
     expect(extendedProducts.length).toBe(3);
 
@@ -46,9 +61,9 @@ describe("GetExtendedProducts tests", () => {
     expect(extendedProducts[1].price).toBe(200);
     expect(extendedProducts[2].price).toBe(300);
 
-    expect(extendedProducts[0].currency).toBe(Currency.DanishKrone);
-    expect(extendedProducts[1].currency).toBe(Currency.DanishKrone);
-    expect(extendedProducts[2].currency).toBe(Currency.DanishKrone);
+    expect(extendedProducts[0].currency).toBe(Currency.NorwegianKrone);
+    expect(extendedProducts[1].currency).toBe(Currency.NorwegianKrone);
+    expect(extendedProducts[2].currency).toBe(Currency.NorwegianKrone);
 
     expect(extendedProducts[0].rating).toBe(2);
     expect(extendedProducts[1].rating).toBe(1);

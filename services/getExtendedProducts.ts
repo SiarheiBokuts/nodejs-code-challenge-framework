@@ -65,10 +65,7 @@ export class GetExtendedProducts {
           // optimization. if our products already have needed currency then we can just skip api call and return price from the product itself
           useDefaultPrice
             ? Promise.resolve(product.price)
-            : this.productPriceProvider.getPrice(
-                product.price,
-                Currency.NorwegianKrone
-              ),
+            : this.productPriceProvider.getPrice(product.price, toCurrency),
           this.productRatingProvider.getRatings(product.productId),
         ]);
       },

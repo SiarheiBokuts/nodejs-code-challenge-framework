@@ -1,5 +1,5 @@
 import axios, { AxiosInstance } from "axios";
-import { Product } from "../models/providers/product";
+import { Product } from "../models/providers/product.model";
 
 export class ProductRatingProvider {
   private axiosInstance: AxiosInstance;
@@ -11,14 +11,14 @@ export class ProductRatingProvider {
   }
 
   async getRatings(productId: Product["productId"]): Promise<number[]> {
-    const response = (
+    const ratings = (
       await this.axiosInstance.get("/product-rating", {
         params: {
           productId: productId,
         },
       })
-    ).data;
+    ).data.rating;
 
-    return response.rating;
+    return ratings;
   }
 }

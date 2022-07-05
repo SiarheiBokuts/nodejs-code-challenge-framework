@@ -1,5 +1,5 @@
 import * as helpers from "../helpers";
-import { Currency } from "../models/currency";
+import { Currency } from "../models/currency.model";
 
 describe("helpers test", () => {
   test("getAverageValue", () => {

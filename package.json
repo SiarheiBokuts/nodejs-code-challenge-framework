@@ -1,7 +1,7 @@
 {
   "name": "products-api-challenge",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "index.ts",
   "repository": "git@github.com:LeoLfL/products-api-challenge.git",
   "author": "Siarhei Bokuts <siarheibokuts@gmail.com>",
   "license": "MIT",

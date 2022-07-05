@@ -1,6 +1,13 @@
 # products-api-challenge
 
-Endpoint that return a new list of products from the Products API and extended them using another APIs.
+Endpoint that return a new list of products from the Products API and extend them using another APIs.
+
+Possible improvements: 
+
+- add `query.toCurrency` validation (didn't do this because product-challenge-price allow any value (maybe it's a bug since for price 1000 and currency 'Wrong currency' it return 1425)
+- think about solution with `bluebird Promise.all` and find a way how to improve it
+- add more tests
+- add better error handling (not it's just one catch block which return 500 and error details)
 
 ## Structure
 
@@ -45,4 +52,4 @@ Tests are located inside **__TESTS__** folder
 
 ## Funny
 
-Please try to add ; to the .env file at the end of any variable (example -> PORT = 3001;). Then when u will start the server it will create some file 3000. and second time the port will be already in use. Strangeeeee
+Please try to add ; to the .env file at the end of any variable (example -> PORT = 3001;). Then when you will start the server it will create some file 3000. and second time the port will be already in use. Strangeeeee

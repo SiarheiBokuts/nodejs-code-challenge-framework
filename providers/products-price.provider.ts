@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from "axios";
-import { Currency } from "../models/currency";
-import { Product } from "../models/providers/product";
+import { Currency } from "../models/currency.model";
+import { Product } from "../models/providers/product.model";
 
 export class ProductPriceProvider {
   private axiosInstance: AxiosInstance;
@@ -15,15 +15,15 @@ export class ProductPriceProvider {
     price: Product["price"],
     toCurrency: Currency
   ): Promise<number> {
-    const response = (
+    const convertedPrice = (
       await this.axiosInstance.get("/product-challenge-price", {
         params: {
           price: price,
           toCurrency: toCurrency,
         },
       })
-    ).data;
+    ).data.price;
 
-    return response.price;
+    return convertedPrice;
   }
 }

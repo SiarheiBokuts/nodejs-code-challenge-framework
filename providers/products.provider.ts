@@ -1,5 +1,5 @@
 import axios, { AxiosInstance } from "axios";
-import { Product } from "../models/providers/product";
+import { Product } from "../models/providers/product.model";
 
 export class ProductsProvider {
   private axiosInstance: AxiosInstance;
@@ -11,7 +11,7 @@ export class ProductsProvider {
   }
 
   async getProducts(): Promise<Product[]> {
-    const response = (await this.axiosInstance.get("/products")).data;
-    return response.body;
+    const response = (await this.axiosInstance.get("/products")).data.body;
+    return response;
   }
 }

@@ -5,17 +5,24 @@ import { Product } from "../models/providers/product";
 import { ProductRatingProvider } from "../providers/product-rating.provider";
 import { ProductPriceProvider } from "../providers/products-price.provider";
 import { ProductsProvider } from "../providers/products.provider";
+import * as helpers from "../helpers";
 
 export class GetExtendedProducts {
-  productsProvider = new ProductsProvider(
-    process.env.PRODUCTS_PROVIDER_ENDPOINT
-  );
-  productPriceProvider = new ProductPriceProvider(
-    process.env.PRODUCT_PRICE_PROVIDER_ENDPOINT
-  );
-  productRatingProvider = new ProductRatingProvider(
-    process.env.PRODUCT_RATING_PROVIDER_ENDPOINT
-  );
+  productsProvider: ProductsProvider;
+  productPriceProvider: ProductPriceProvider;
+  productRatingProvider: ProductRatingProvider;
+
+  constructor() {
+    this.productsProvider = new ProductsProvider(
+      process.env.PRODUCTS_PROVIDER_ENDPOINT
+    );
+    this.productPriceProvider = new ProductPriceProvider(
+      process.env.PRODUCT_PRICE_PROVIDER_ENDPOINT
+    );
+    this.productRatingProvider = new ProductRatingProvider(
+      process.env.PRODUCT_RATING_PROVIDER_ENDPOINT
+    );
+  }
 
   async getExtendedProducts(
     toCurrency: Currency,
@@ -36,7 +43,7 @@ export class GetExtendedProducts {
           ...product,
           price: productInfo[0],
           currency: toCurrency,
-          rating: this.getAverateRating(productInfo[1]),
+          rating: helpers.getAverageValue(productInfo[1]),
         };
       }
     );
@@ -51,7 +58,7 @@ export class GetExtendedProducts {
   ) {
     const useDefaultPrice = toCurrency === defaultProductsCurrency;
 
-    let productsInfo = await bluebird.map(
+    const productsInfo = await bluebird.map(
       products,
       async (product) => {
         return Promise.all([
@@ -69,10 +76,5 @@ export class GetExtendedProducts {
     );
 
     return productsInfo;
-  }
-
-  getAverateRating(ratings: number[]) {
-    const average = ratings.reduce((a, b) => a + b, 0) / ratings.length;
-    return Number(average.toFixed(2));
   }
 }

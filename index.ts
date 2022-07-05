@@ -16,10 +16,11 @@ app.get("/products", async (req: Request, res: Response) => {
       Currency.DanishKrone
     );
 
-    let extendedProducts = await new GetExtendedProducts().getExtendedProducts(
-      toCurrency,
-      Currency.DanishKrone
-    );
+    const extendedProducts =
+      await new GetExtendedProducts().getExtendedProducts(
+        toCurrency,
+        Currency.DanishKrone
+      );
     res.json(extendedProducts);
   } catch (error) {
     console.error(error);

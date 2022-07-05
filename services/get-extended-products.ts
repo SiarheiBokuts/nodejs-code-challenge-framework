@@ -3,7 +3,7 @@ import { Currency } from "../models/currency.model";
 import { ExtendedProduct } from "../models/extended-product.model";
 import { Product } from "../models/providers/product.model";
 import { ProductRatingProvider } from "../providers/product-rating.provider";
-import { ProductPriceProvider } from "../providers/products-price.provider";
+import { ProductPriceProvider } from "../providers/product-price.provider";
 import { ProductsProvider } from "../providers/products.provider";
 import * as helpers from "../helpers";
 

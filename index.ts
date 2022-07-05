@@ -1,7 +1,7 @@
 import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
 import { Currency } from "./models/currency.model";
-import { GetExtendedProducts } from "./services/getExtendedProducts";
+import { GetExtendedProducts } from "./services/get-extended-products";
 import * as helpers from "./helpers";
 
 dotenv.config();

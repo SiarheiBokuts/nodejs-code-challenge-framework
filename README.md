@@ -2,7 +2,7 @@
 
 Endpoint that return a new list of products from the Products API and extend them using another APIs.
 
-If i missed something -:> sorry ^^ or if i did some bug somewhere 
+If i missed something -:> sorry ^^ or if i did some bug somewhere =)
 
 Possible improvements: 
 

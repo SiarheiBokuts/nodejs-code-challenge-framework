@@ -10,6 +10,7 @@ Possible improvements:
 - think about solution with `bluebird Promise.all` and find a way how to improve it
 - add more tests
 - add better error handling (not it's just one catch block which return 500 and error details)
+- add retry logic (https://www.npmjs.com/package/bluebird-retry)
 
 ## Structure
 

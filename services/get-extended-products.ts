@@ -1,11 +1,11 @@
 import bluebird from "bluebird";
 import { Currency } from "../models/currency.model";
-import { ExtendedProduct } from "../models/extended-product.model";
 import { Product } from "../models/providers/product.model";
 import { ProductRatingProvider } from "../providers/product-rating.provider";
 import { ProductPriceProvider } from "../providers/product-price.provider";
 import { ProductsProvider } from "../providers/products.provider";
 import * as helpers from "../helpers";
+import { ExtendedProduct } from "../models/extended-product.model";
 
 export class GetExtendedProducts {
   productsProvider: ProductsProvider;
@@ -58,7 +58,31 @@ export class GetExtendedProducts {
   ) {
     const useDefaultPrice = toCurrency === defaultProductsCurrency;
 
-    const productsInfo = await bluebird.map(
+    // const productsInfo: [number, number[]][] = await bluebird.map(
+    //   products,
+    //   async (product) => {
+    //     console.log(new Date().toISOString());
+    //     await bluebird.delay(Math.random() * 10000);
+    //     let a = {
+    //       [product.productId]: {
+    //         price: useDefaultPrice
+    //           ? await Promise.resolve(product.price)
+    //           : await this.productPriceProvider.getPrice(
+    //               product.price,
+    //               toCurrency
+    //             ),
+    //         ratings: await this.productRatingProvider.getRatings(
+    //           product.productId
+    //         ),
+    //       },
+    //     } as any;
+    //     console.log("finished = ", new Date().toISOString());
+    //     return a;
+    //   },
+    //   { concurrency: 5 }
+    // );
+
+    const productsInfo: [number, number[]][] = await bluebird.map(
       products,
       async (product) => {
         return Promise.all([
@@ -71,6 +95,21 @@ export class GetExtendedProducts {
       },
       { concurrency: 10 }
     );
+
+    // BETTER
+    // const productsInfoWithFormat: {
+    //   [productId: number]: { price: number; ratings: number[] };
+    // } = products.reduce<{
+    //   [productId: number]: { price: number; ratings: number[] };
+    // }>((prevV, currV, index) => {
+    //   prevV[currV.productId] = {
+    //     price: productsInfo[index][0],
+    //     ratings: productsInfo[index][1],
+    //   };
+    //   return prevV;
+    // }, {});
+
+    // console.log(productsInfoWithFormat);
 
     return productsInfo;
   }

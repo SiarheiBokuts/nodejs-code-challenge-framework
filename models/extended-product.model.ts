@@ -1,7 +1,7 @@
 import { Currency } from "./currency.model";
 import { Product } from "./providers/product.model";
 
-export type ExtendedProduct = Product & {
+export interface ExtendedProduct extends Product {
   currency: Currency;
-  rating: number;
-};
+  rating: number | null;
+}

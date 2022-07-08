@@ -12,6 +12,9 @@ export function getCorrectCurrency(
 }
 
 export function getAverageValue(ratings: number[], toFixed = 2) {
+  if (!ratings || !Array.isArray(ratings) || ratings.length === 0) {
+    return null;
+  }
   const average = ratings.reduce((a, b) => a + b, 0) / ratings.length;
   return Number(average.toFixed(toFixed));
 }

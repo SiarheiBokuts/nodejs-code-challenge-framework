@@ -4,7 +4,8 @@ nodejs-code-challenge-framework is a mini server and test environment for debugg
 
 ## Structure
 
-`services` -> contains application logic
+`servers`    -> contains express server app
+`scratchpad` -> a workspace for testing code and running small functions
 
 ## Onboarding guide
 

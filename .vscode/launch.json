@@ -8,6 +8,7 @@
       "type": "node",
       "request": "launch",
       "name": "Debug server (with auto restart)",
+      "runtimeVersion": "22",
       "cwd": "${workspaceRoot}",
       "internalConsoleOptions": "openOnSessionStart",
       "skipFiles": ["<node_internals>/**"],
@@ -18,9 +19,10 @@
       "args": ["${workspaceFolder}/index.ts"]
     },
     {
-      "name": "Debug Jest Tests",
       "type": "node",
       "request": "launch",
+      "name": "Debug Jest Tests",
+      "runtimeVersion": "22",
       "runtimeArgs": [
         "--inspect-brk",
         "${workspaceRoot}/node_modules/.bin/jest",
@@ -35,7 +37,7 @@
       "type": "node",
       "request": "launch",
       "name": "Debug scratchpad",
-      "runtimeVersion": "20",
+      "runtimeVersion": "22",
       "outputCapture": "std",
       "cwd": "${workspaceRoot}",
       "internalConsoleOptions": "openOnSessionStart",

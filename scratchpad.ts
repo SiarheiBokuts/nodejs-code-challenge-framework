@@ -5,3 +5,5 @@ function testLogic() {
 }
 
 console.log(testLogic());
+
+console.log("Scratchpad finished");
